@@ -20,8 +20,8 @@ numbers = "0123456789"
 app = Flask(__name__, template_folder="Templates")
 app.secret_key = "trishawharton25confirmed"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/krisnubz/mysite/cobellum/User.sqlite3'
-app.config['SQLALCHEMY_BINDS'] = {'question' : 'sqlite:////home/krisnubz/mysite/cobellum/Question.sqlite3'}
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/krisnubz/Cobellum/Cobellum/User.sqlite3'
+app.config['SQLALCHEMY_BINDS'] = {'question' : 'sqlite:////home/krisnubz/Cobellum/Cobellum/Question.sqlite3'}
 cau = 0
 
 #ONLY CHANGE BELOW THIS PART!!!
@@ -756,5 +756,5 @@ def findAccuracy(name):
     acc = str(int(round((r/(r+w))*100))) + "%"
     return acc
 
-if __name__ == "__main__":
-    app.run()
+#if __name__ == "__main__":
+#    app.run()
