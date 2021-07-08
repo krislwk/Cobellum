@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+=====================================
+{% for user in users %}
+<p> Username: {{user.username}} </p>
+<p> Ingame: {{user.inGame}}
+<p> Password: {{user.password}} </p>
+<p> SR: {{user.sr}} </p>
+<p> Rank: {{user.rank}} </p>
+<p> Bits: {{user.bit}} </p>
+<p> Email: {{user.email}} </p>
+<p> Referral Code: {{user.referral}} </p>
+<p> Country: {{user.flag}} </p>
+<p> Organization: {{user.school}} </p>
+<p> Friends: {{user.friends}} </p>
+<p> Friend Requests: {{user.requests}} </p>
+======================================
+{% endfor %}
+<p> Current Active Users: {{current_active_users}} </p>
+<form action="#" method="post">
+  <input type="submit" name="submit" value="Clear DB">
+  <input type="submit" name="submit" value="goToQuestion">
+  <br>
+  <br>
+  <br>
+  <br>
+  <input type="text" name="username" placeholder="Enter Username">
+  <br>
+  <br>
+  <input type="submit" name="submit" value="deleteUser">
+  <input type="submit" name="submit" value="searchuser">
+</form>
+</html>

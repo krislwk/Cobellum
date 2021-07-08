@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='cobellum_logo.ico') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Home</title>
+</head>
+<script>
+    $(function() {
+        $(".toggle").on("click",function(){
+            if($(".itemh").hasClass("isactive")){
+                $(".itemh").removeClass("isactive");
+            }
+            else{
+                $(".itemh").addClass("isactive");
+            }
+        })
+    });
+</script>
+<body>
+    <nav>
+        <ul class="menu">
+            <li class="logo"><a href="{{ url_for('home') }}"><img class="headerlogo" src="{{ url_for('static', filename='bellumLogo.png') }}"></a></li>
+            <li class="itemh"><a href="{{ url_for('home') }}">HOME</a></li>
+            <li class="itemh"><a href="{{ url_for('play') }}">PLAY</a></li>
+            <li class="itemh"><a href="{{ url_for('profile') }}">PROFILE</a></li>
+            <li class="itemh"><a href="{{ url_for('leaderboards') }}">LEADERBOARD</a></li>
+            <li class="itemh"><a href="{{ url_for('friendrequests') }}">FRIENDS</a></li>
+            <li class="itemh button"><a href="{{ url_for('logout') }}">LOGOUT</a></li>
+            <li class="toggle"><span class="bars"></span></li>
+        </ul>
+    </nav>
+</body>
+{% block content %}{% endblock %}
+</html>
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
+    *{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+.logo img{
+    width: 100px;
+ }
+
+nav{
+    background: #1e2529;
+    padding: 0px 20px;
+}
+.menu{
+    list-style-type: none;
+}
+.menu a{
+    font-family: 'Work Sans', sans-serif;
+    color: white;
+    text-decoration: none;
+}
+.menu a:hover{
+    color: #444;
+}
+.menu li{
+    font-size: 16px;
+    padding: 15px 5px;
+}
+.menu li a{
+    display: block;
+}
+.button{
+    border-bottom: 1px #444 solid;
+}
+
+/*Moible Menu*/
+.menu{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.menu li{
+    font-size: 16px;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 800;
+    padding: 15px 5px;
+}
+.toggle{
+    order: 1;
+}
+.itemh.button{
+    order: 2;
+}
+.itemh{
+    margin-top: 12px;
+    width: 100%;
+    text-align: center;
+    order: 3;
+    display: none;
+}
+.itemh.isactive{
+    display: block;
+}
+.toggle{
+    cursor: pointer;
+}
+.bars{
+    margin-top: 20px;
+    background: #999;
+    display: inline-block;
+    height: 2px;
+    position: relative;
+    width: 18px;
+}
+.bars::before,.bars::after{
+    background: #999;
+    content:"";
+    display: inline-block;
+    height: 2px;
+    position: absolute;
+    width: 18px;
+}
+.bars::before{
+    top: 5px;
+}
+.bars::after{
+    top: -5px;
+}
+@media all and (min-width:460px){
+    .menu{
+        justify-content: center;
+    }
+    .logo{
+        flex: 1;
+    }
+    .itemh.button{
+        width: auto;
+        order: 1;
+        display: block;
+    }
+    .toggle{
+        order:2
+    }
+    .button{
+        border: 0;
+    }
+    .button a{
+        margin-top: -6px;
+        padding: 5px 15px;
+        margin-right: 15px;
+        border: 1px white solid;
+        border-radius: 50em;
+    }
+
+}
+@media all and (min-width: 1200px){
+    .itemh{
+        display:block;
+        width: auto;
+    }
+    .toggle{
+        display: none;
+    }
+    .logo{
+        order: 0;
+    }
+    .itemh{
+        order: 1;
+    }
+    .menu li{
+        padding: 15px 10px;
+    }
+    .button a {
+        border: 0;
+        background: none;
+        padding: 0;
+        margin-top: 0;
+    }
+}
+</style>

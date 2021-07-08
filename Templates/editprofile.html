@@ -1,0 +1,112 @@
+<html>
+{% extends "base.html" %}
+{% block content %}
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  {% if flash == True %}
+    <div class="flashdiv">
+      <h1 class="flashwarn"> {{warning}} </h1>
+    </div>
+      <style>
+      h1.flashwarn{
+        color: #af4442;
+        font-family: "Arial", sans-serif;
+        font-size: 20px;
+      }
+      div.flashdiv{
+        background-color: #f2dede;
+        border-radius: 5px;
+        width: 90%;
+        text-align: center;
+        margin-left: 5%;
+        margin-top: 1%;
+        border-color: #af4442;
+        border-style: solid;
+        border-width: thin;
+      }
+      </style>
+  {% endif %}
+  <div class="editbox">
+    {% for x in user %}
+    <form action="#" method="post">
+      <h2>Edit Profile Info<h2>
+      <h4> Email </h4>
+      <input type="text" name="email" value="{{x.email}}">
+      <h4> Password </h4>
+      <input type="password" name="password1" placeholder="Enter new Password"/>
+      <br>
+      <input type="password" name="password2" placeholder="Reenter New Password"/>
+      <input type="submit" name="submit" value="Save Changes" />
+    </form>
+    {% endfor %}
+  </div>
+</body>
+
+<style>
+input[type = "submit"]{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    font-size: 110%;
+    border: 2px solid #2ecc71;
+    padding: 5px 10px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+input[type = "submit"]:hover{
+   background: #2ecc71;
+   border-color: #3498db;
+}
+input[type="text"], input[type="password"]{
+  border: 0;
+  background: none;
+  display: block;
+  text-align: center;
+  border: 2px solid #3498db;
+  padding: 5px 2px;
+  width: 300px;
+  outline: none;
+  color: white;
+  border-radius: 5px;
+  transition: 0.25s;
+}
+h2{
+  font-family: 'Roboto', sans-serif;
+  color: grey;
+  font-weight: bold;
+  font-size: 30px;
+}
+h4{
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 2%;
+  margin-top: 5%;
+}
+div.editbox{
+  width: 300px;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #222222;
+  background-size: 400%;
+  text-align: center;
+}
+body{
+  background-color: #2f3133;
+}
+</style>
+
+{% endblock %}
+</html>

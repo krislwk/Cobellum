@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Home</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+<script>
+    $(function() {
+        $(".toggle").on("click",function(){
+            if($(".itemh").hasClass("active")){
+                $(".itemh").removeClass("active");
+            }
+            else{
+                $(".itemh").addClass("active");
+            }
+        })
+    });
+</script>
+<body>
+  {% if flash == True %}
+    <div class="flashdiv">
+      <h1 class="flashwarn"> No user found.</h1>
+    </div>
+      <style>
+      h1.flashwarn{
+        color: #af4442;
+        font-family: "Arial", sans-serif;
+        font-size: 20px;
+      }
+      div.flashdiv{
+        background-color: #f2dede;
+        border-radius: 5px;
+        width: 90%;
+        text-align: center;
+        margin-left: 5%;
+        margin-top: 1%;
+        border-color: #af4442;
+        border-style: solid;
+        border-width: thin;
+      }
+      </style>
+    {% endif %}
+
+    <div class="homecontent">
+        <div class="content">
+            <div class="searchbar">
+              <form class="paddy" action="#" method="post">
+                <input type="text" name="username" placeholder="Search users..." / >
+                <input type="submit" name="submit" value="Search" />
+              </form>
+            </div>
+
+            <div class="slider">
+                <div id="my-slider" class="carousel slide" data-ride="">
+
+                    <ol class="carousel-indicators">
+                        <li data-target="my-slider" data-slide-to="0" class="active"></li>
+                        <li data-target="my-slider" data-slide-to="1"></li>
+                        <li data-target="my-slider" data-slide-to="2"></li>
+                    </ol>
+
+                   <div class="carousel-inner" role="listbox">
+                       <div class="item active">
+                            <img src="{{ url_for('static', filename='slide2.png') }}" alt="">
+                       </div>
+
+                       <div class="item">
+                            <img src="{{ url_for('static', filename='slide3.png') }}" alt="">
+                        </div>
+
+                        <div class="item">
+                            <img src="{{ url_for('static', filename='slide1.png') }}" alt="">
+                        </div>
+
+
+                   </div>
+
+                   <a class="left carousel-control" href="#my-slider" role="button" data-slide="prev">
+                       <span class="glyphicon glyphicon-chevron-left" aria.hidden=true></span>
+                   </a>
+
+                   <a class="right carousel-control" href="#my-slider" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria.hidden=true></span>
+                </a>
+
+
+                </div>
+            </div>
+
+            <div class="lastitem">
+              <h1 class="playercount"> Player Count: {{playercount}} </h1>
+              <style>
+                .playercount{
+                  color: white;
+                  text-align: center;
+                  position: relative;
+                  top: 35%;
+                }
+              </style>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+<style>
+.paddy{
+  width: 100%;
+}
+.homecontent{
+    font-family: 'Work Sans', sans-serif;
+    padding: 1% 5%;
+    display: grid;
+    grid-gap: 5%;
+
+}
+.searchbar{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5%;
+}
+.searchbar input[type="text"]{
+    width: 80%;
+    color: white;
+    background-color: #1e2529;
+    padding: 1vw;
+    outline: none;
+    border: none;
+
+}
+.searchbar input[type="text"]:hover{
+    background-color: #1b2225;
+}
+.searchbar input[type="submit"]{
+    width: 15%;
+    padding: 1vw;
+    color: white;
+    background-color: #171d20;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+}
+.searchbar input[type="submit"]:hover{
+    background-color: #1b2225;
+}
+.lastitem{
+    background-color: #171d20;
+    width: 100%;
+    margin-bottom: 3%;
+    height: 5em;
+}
+.content div{
+    margin-top: 0%;
+}
+.content div:first-of-type{
+    margin-top: 0;
+}
+.content2{
+    background-color: #1e2529;
+    width: auto;
+}
+.slider{
+    margin-bottom: 7%;
+}
+
+@media (min-width: 770px){
+    .homecontent{
+      padding: 2% 20%;
+    }
+    .lastitem{
+        margin-bottom: 0;
+        height: 15em;
+    }
+    .content2{
+      margin-left: 50%;
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+body{
+    background-color: #2f3133;
+}
+.logo img{
+    width: 100px;
+ }
+
+nav{
+    background: #1e2529;
+    padding: 0px 20px;
+}
+.menu{
+    list-style-type: none;
+}
+.menu a{
+    font-family: 'Work Sans', sans-serif;
+    color: white;
+    text-decoration: none;
+}
+.menu a:hover{
+    color: #444;
+}
+.menu li{
+    font-size: 16px;
+    padding: 15px 5px;
+}
+.menu li a{
+    display: block;
+}
+.button{
+    border-bottom: 1px #444 solid;
+}
+
+/*Moible Menu*/
+.menu{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.menu li{
+    font-size: 16px;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 800;
+    padding: 15px 5px;
+}
+.toggle{
+    order: 1;
+}
+.itemh.button{
+    order: 2;
+}
+.itemh{
+    margin-top: 12px;
+    width: 100%;
+    text-align: center;
+    order: 3;
+    display: none;
+}
+.itemh.active{
+    display: block;
+}
+.toggle{
+    cursor: pointer;
+}
+.bars{
+    margin-top: 20px;
+    background: #999;
+    display: inline-block;
+    height: 2px;
+    position: relative;
+    width: 18px;
+}
+.bars::before,.bars::after{
+    background: #999;
+    content:"";
+    display: inline-block;
+    height: 2px;
+    position: absolute;
+    width: 18px;
+}
+.bars::before{
+    top: 5px;
+}
+.bars::after{
+    top: -5px;
+}
+@media all and (min-width:460px){
+    .menu{
+        justify-content: center;
+    }
+    .logo{
+        flex: 1;
+    }
+    .itemh.button{
+        width: auto;
+        order: 1;
+        display: block;
+    }
+    .toggle{
+        order:2
+    }
+    .button{
+        border: 0;
+    }
+    .button a{
+        margin-top: -6px;
+        padding: 5px 15px;
+        margin-right: 15px;
+        border: 1px white solid;
+        border-radius: 50em;
+    }
+
+}
+@media all and (min-width: 770px){
+    .itemh{
+        display:block;
+        width: auto;
+    }
+    .toggle{
+        display: none;
+    }
+    .logo{
+        order: 0;
+    }
+    .itemh{
+        order: 1;
+    }
+    .menu li{
+        padding: 15px 10px;
+    }
+    .button a {
+        border: 0;
+        background: none;
+        padding: 0;
+        margin-top: 0;
+    }
+}
+</style>
+{% endblock %}

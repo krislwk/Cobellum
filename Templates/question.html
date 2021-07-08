@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<a href="{{ url_for('qedit', sort=1) }}"> 1 </a>
+<a href="{{ url_for('qedit', sort=2) }}"> 2 </a>
+<a href="{{ url_for('qedit', sort=3) }}"> 3 </a>
+<a href="{{ url_for('qedit', sort=4) }}"> 4 </a>
+<a href="{{ url_for('qedit', sort=5) }}"> 5 </a>
+<a href="{{ url_for('qedit', sort='all') }}"> ALL </a>
+<h1> Add a question </h1>
+<form action="#" method="post">
+  <input type="text" name="question" placeholder="Enter question">
+  <br>
+  <input type="text" name="answer1" placeholder="Correct">
+  <br>
+  <input type="text" name="answer2" placeholder="Wrong">
+  <br>
+  <input type="text" name="answer3" placeholder="Wrong">
+  <br>
+  <input type="text" name="answer4" placeholder="Wrong">
+  <input type="text" name="level" placeholder="Enter level (1-5)">
+  <input type="text" name="elo" placeholder="Enter elo">
+  <input type="submit" name="submit" value="Save">
+  <br>
+  <br>
+  <input type="text" name="search" placeholder="Enter Question">
+  <input type="submit" name="submit" value="delete">
+</form>
+========================================
+{% for q in questions %}
+<p> Question: {{q.question}} </p>
+<p> Answer: {{q.answer}} </p>
+<p> Level: {{q.level}} </p>
+<p> Elo: {{q.elo}} </p>
+========================================
+{% endfor %}
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+{% for user in users %}
+<form action="#" method="post">
+<p> Username : {{user.username}} </p>
+<input type="text" name="cUsername" placeholder="Enter Username" />
+<p> Password : {{user.password}} </p>
+<input type="text" name="cPassword" placeholder="Enter Password" />
+<p> Email : {{user.email}} </p>
+<input type="text" name="cEmail" placeholder="Enter Email" />
+<p> SR : {{user.sr}} </p>
+<input type="text" name="cSr" placeholder="Enter SR" />
+<p> Rank : {{user.rank}} </p>
+<input type="text" name="cRank" placeholder="Enter Rank" />
+<p> Country : {{user.flag}} </p>
+<input type="text" name="cCountry" placeholder="Enter Country" />
+<p> Organization : {{user.school}} </p>
+<input type="text" name="cOrg" placeholder="Enter Organization" />
+<p> Referral Code : {{user.referral}} </p>
+<input type="text" name="cReferral" placeholder="Enter Referral" />
+<p> Bits : {{user.bit}} </p>
+<input type="text" name="cBit" placeholder="Enter Bits" />
+<p> Friends : {{user.friends}} </p>
+<input type="text" name="cFriends" placeholder="Enter Friends" />
+<p> Requests : {{user.requests}} </p>
+<input type="text" name="cRequests" placeholder="Enter Requests" />
+<br>
+<br>
+<input type="submit" name="submit" value="change" />
+</form>
+{% endfor %}
+</html>

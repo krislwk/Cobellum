@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<title>Under Maintenance</title>
+<html>
+{% extends "base.html" %}
+{% block content %}
+    <body>
+        <div class="title">
+            <h1>Error: This page is currently under maintenance due to the surge of users.</h1>
+            <h2>We apologize for the inconvenience.</h2>
+        </div>
+    </body>
+</html>
+
+<style>
+a.record{
+  color: grey;
+  text-decoration: none;
+}
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-color: #2f3133;
+}
+.title{
+    padding: 10px;
+    text-align: center;
+}
+.title h1{
+    color: grey;
+    font-size: 40px;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 10;
+}
+h2{
+    color: white;
+    font-size: 40px;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 10;
+}
+.leaderboard{
+    margin: 0px 2%;
+}
+.content-table{
+     width: 100%;
+     border-collapse: collapse;
+     font-family: 'Arial';
+     font-size: 1em;
+     color: grey;
+     min-width: 100px;
+     text-align: center;
+     margin-top: 0%;
+}
+.header{
+    background-color: #1c1c1c;
+}
+.row{
+    border-bottom: 1px #3d3d3d solid;
+    background-color: #282a2b;
+}
+.content-table th,
+.content-table td{
+    padding: 6px 1px ;
+}
+.content-table tr:nth-child(2n+0):not([class=header]){
+    background-color: #222222;
+}
+@media all and (min-width: 470px){
+    .title h1{
+        font-size: 50px;
+    }
+    .content-table{
+        font-size: 1.2em;
+    }
+    .content-table th,
+    .content-table td{
+     padding: 6px 2px ;
+}
+
+@media all and (min-width: 720px){
+    .title h1{
+        font-size: 70px;
+    }
+    .content-table{
+        font-size: 1.5em;
+    }
+    .content-table th,
+    .content-table td{
+     padding: 12px 15px ;
+     }
+}
+</style>
+{% endblock %}

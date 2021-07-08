@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<title>Profile</title>
+<link rel="shortcut icon" href="{{ url_for('static', filename='cobellum_logo.ico') }}">
+<html>
+{% for user in user_show %}
+<body>
+    <nav>
+        <ul class="menu">
+            <li class="logo"><a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='bellumLogo.png') }}"></a></li>
+            <li class="item"><a href="{{ url_for('home') }}">HOME</a></li>
+            <li class="item"><a href="{{ url_for('play') }}">PLAY</a></li>
+            <li class="item"><a href="{{ url_for('profile') }}">PROFILE</a></li>
+            <li class="item"><a href="{{ url_for('leaderboards') }}">LEADERBOARD</a></li>
+            <li class="item"><a href="{{ url_for('friendrequests') }}">FRIENDS</a></li>
+            <li class="item button"><a href="{{ url_for('logout') }}">LOGOUT</a></li>
+            <li class="toggle"><span class="bars"></span></li>
+        </ul>
+    </nav>
+    {% if flash == True %}
+      <div class="flashdiv">
+        <h1 class="flashwarn"> You have lost 20 rating for leaving.</h1>
+      </div>
+        <style>
+        h1.flashwarn{
+          color: #af4442;
+          font-family: "Arial", sans-serif;
+          font-size: 20px;
+        }
+        div.flashdiv{
+          background-color: #f2dede;
+          border-radius: 5px;
+          width: 90%;
+          text-align: center;
+          margin-left: 5%;
+          margin-top: 1%;
+          border-color: #af4442;
+          border-style: solid;
+          border-width: thin;
+        }
+        </style>
+      {% endif %}
+    <div class="grid-container">
+        <div class="item-container item1">
+            <div><img class="highestrank" src="{{ url_for('static', filename=user.highestRank.lower() + '.png') }}"></div>
+            <div class="content">
+                <div class="text wimg"><p><h1>{{user.highestSR}}</h1></p></div>
+                <div class="text"><p><h1>(Career High)</h1></p></div>
+                <div class="text"><p><h1>{{user.highestRank}}</h1></p></div>
+            </div>
+        </div>
+        <div class="item-container item2">
+            <div class="content">
+              {% if edit == True %}
+                <a class="editProfile" href="{{ url_for('edit') }}">Edit Profile</a>
+                <style>
+                a.editProfile{
+                  color: grey;
+                  font-weight: bold;
+                  border-style: solid;
+                  border-color: #3498db;
+                  font-size: 30px;
+                  border-radius: 10px;
+                }
+                </style>
+              {% endif %}
+                <div class="text"><p><h1>{{username}}</h1></p></div>
+                <div class="text"><p><h1>{{user.flag}}</h1></p></div>
+                <div class="text"><p><h1>{{user.school}}</h1></p></div>
+                <div class="text"><p><h1>Bits: {{user.bit}}</h1></p></div>
+                <div class="text"><p><h1>Referral Code: {{user.referral}}</h1></p></div>
+                <div class="text"><p><h1>Accuracy: {{acc}}</h1></p></div>
+            </div>
+        </div>
+        <div class="item-container item3">
+            <div><img class="rank" src="{{ url_for('static', filename=user.rank.lower() + '.png') }}"></div>
+            <div><img class="flag" src="{{ url_for('static', filename=user.flag.lower() + '.png') }}"></div>
+            <div class="content">
+                <div class="wimg"><p><h1>{{user.sr}}</h1></p></div>
+                <br>
+                <div class="text"><p><h1>{{username}}</h1></p></div>
+                <br>
+                <div class="text"><p><h1>{{user.rank}}</h1></p></div>
+
+            </div>
+        </div>
+        <div class="item-container item4">
+            <div class="content">
+                <div class="text"><h1>{{friend}}</h1></div>
+                {% if added == False %}
+                <form class="#" method="post"><button class="btn">Send Request</button></form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+{% if user.rank == "Master" or user.rank == "Grandmaster" %}
+  <style>
+    img.rank{
+        position: absolute;
+        top: -5em;
+        left: 46.5%;
+        margin-left: -3.6em;
+    }
+  </style>
+{% endif %}
+{% if user.rank != "Master" and user.rank != "Grandmaster" %}
+  <style>
+    img.rank{
+        position: absolute;
+        top: -5em;
+        left: 50%;
+        margin-left: -3.6em;
+    }
+  </style>
+{% endif %}
+{% if user.highestRank == "Master" or user.highestRank == "Grandmaster" %}
+  <style>
+    img.highestrank{
+        position: absolute;
+        top: -5em;
+        left: 46.5%;
+        margin-left: -3.6em;
+    }
+  </style>
+{% endif %}
+{% if user.highestRank != "Master" and user.highestRank != "Grandmaster" %}
+  <style>
+    img.highestrank{
+        position: absolute;
+        top: -5em;
+        left: 50%;
+        margin-left: -3.6em;
+    }
+  </style>
+{% endif %}
+</html>
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
+body{
+    margin: 0;
+    background-color: #2f3133
+}
+.grid-container{
+    margin: 5em 6em;
+    position: relative;
+    padding: 3em;
+    display: grid;
+    grid-gap: 6.5em;
+    grid-template-columns: repeat(1, 1fr);
+}
+.item-container{
+    position: relative;
+    background-color: #222222;
+    font-family: 'Work Sans', sans-serif;
+    text-align: center;
+    color: white;
+    padding: 2em;
+    border-radius: .3em;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.1);
+}
+.content{
+    margin-top: 30px;
+    position: relative;
+}
+img.flag{
+    position: absolute;
+    left: 75%;
+    top: -0.01em;
+}
+.btn{
+    font-family: 'Work Sans', sans-serif;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    width: 50%;
+    height: 2em;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: grey;
+    position: relative;
+    --border-size: 2px;
+}
+.btn::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: var(--border-size) solid white;
+    transition: top,left,right,bottom, 100ms ease-in-out;
+}
+.btn:active::before
+{
+    top: calc(var(--border-size)*-2);
+    left: calc(var(--border-size)*-2);
+    right: calc(var(--border-size)*-2);
+    bottom: calc(var(--border-size)*-2);
+
+}
+.item1{
+        order: 3;
+}
+.item2{
+        order: 4;
+}
+.item3{
+        order: 1;
+}
+.item4{
+        order: 2;
+}
+@media (min-width: 1200px){
+    .grid-container{
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 5em;
+        margin: 5em 11em;
+    }
+    .btn{
+        margin-top: 20px;
+        width: 80%;
+        font-size: 10px;
+    }
+    .item1{
+        grid-row: 1/3;
+    }
+    .item2{
+        grid-row: 1/3;
+    }
+    .item2 h1{
+        margin-top: 1.1em;
+    }
+    .item1 .content div:last-of-type{
+    margin-top: 10em;
+    }
+}
+
+@media (min-width: 1350px){
+    .btn{
+        font-size: 16px;
+    }
+}
+
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
+    *{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+.logo img{
+    width: 100px;
+ }
+
+nav{
+    background: #1e2529;
+    padding: 0px 20px;
+}
+.menu{
+    list-style-type: none;
+}
+.menu a{
+    font-family: 'Work Sans', sans-serif;
+    color: white;
+    text-decoration: none;
+}
+.menu a:hover{
+    color: #444;
+}
+.menu li{
+    font-size: 16px;
+    padding: 15px 5px;
+}
+.menu li a{
+    display: block;
+}
+.button{
+    border-bottom: 1px #444 solid;
+}
+
+/*Moible Menu*/
+.menu{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.menu li{
+    font-size: 16px;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 800;
+    padding: 15px 5px;
+}
+.toggle{
+    order: 1;
+}
+.item.button{
+    order: 2;
+}
+.item{
+    margin-top: 12px;
+    width: 100%;
+    text-align: center;
+    order: 3;
+    display: none;
+}
+.item.active{
+    display: block;
+}
+.toggle{
+    cursor: pointer;
+}
+.bars{
+    margin-top: 20px;
+    background: #999;
+    display: inline-block;
+    height: 2px;
+    position: relative;
+    width: 18px;
+}
+.bars::before,.bars::after{
+    background: #999;
+    content:"";
+    display: inline-block;
+    height: 2px;
+    position: absolute;
+    width: 18px;
+}
+.bars::before{
+    top: 5px;
+}
+.bars::after{
+    top: -5px;
+}
+@media all and (min-width:460px){
+    .menu{
+        justify-content: center;
+    }
+    .logo{
+        flex: 1;
+    }
+    .item.button{
+        width: auto;
+        order: 1;
+        display: block;
+    }
+    .toggle{
+        order:2
+    }
+    .button{
+        border: 0;
+    }
+    .button a{
+        margin-top: -6px;
+        padding: 5px 15px;
+        margin-right: 15px;
+        border: 1px white solid;
+        border-radius: 50em;
+    }
+
+}
+@media all and (min-width: 1200px){
+    .item{
+        display:block;
+        width: auto;
+    }
+    .toggle{
+        display: none;
+    }
+    .logo{
+        order: 0;
+    }
+    .item{
+        order: 1;
+    }
+    .menu li{
+        padding: 15px 10px;
+    }
+    .button a {
+        border: 0;
+        background: none;
+        padding: 0;
+        margin-top: 0;
+    }
+}
+
+</style>
+{% endfor %}
+<script>
+    $(function() {
+        $(".toggle").on("click",function(){
+            if($(".item").hasClass("active")){
+                $(".item").removeClass("active");
+            }
+            else{
+                $(".item").addClass("active");
+            }
+        })
+    });
+</script>
